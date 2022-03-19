@@ -133,7 +133,7 @@ clearGridButton.addEventListener('click', clearGrid);
 changeSizeButton.addEventListener('click', () => {
     let userChoice = prompt('Enter grid count per side: ');
     if (userChoice){
-        populateGrid()
+        populateGrid(userChoice)
     }
 })
 
