@@ -109,7 +109,6 @@ function paintGrid(grid){
     //console.log(grid);
     let chosenColor = colorPicker.value;
     let gridColor = RGBToHex(grid.target.style.background);
-    console.log(chosenColor, gridColor)
     if (chosenColor === gridColor){
 
         let currentBrightness = parseFloat(grid.target.style.filter.replace('brightness(', '').replace(')', ''));
