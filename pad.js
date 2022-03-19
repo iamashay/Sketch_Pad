@@ -3,11 +3,12 @@ const clearGridButton = document.querySelector('#clear');
 const changeSizeButton = document.querySelector('#changeSize');
 const colorPicker = document.querySelector('#color');
 const gridSizeMsg = document.querySelector('#gridSizeMsg');
+const existingGridSize = document.querySelector('#existingGridSize');
 
 function populateGrid(gridCount=10){
     
-    if (!gridCount || gridCount < 2 || isNaN(gridCount)) {
-        gridCount = 2;
+    if (!gridCount || isNaN(gridCount)) {
+        gridCount = parseInt(existingGridSize.value);
     }
     
     gridSizeMsg.innerHTML = `Current Size: <b>${gridCount} x ${gridCount}</b>`;
@@ -16,6 +17,8 @@ function populateGrid(gridCount=10){
         gridCount = 64;
         gridSizeMsg.innerHTML = `Current Size: <b>${gridCount} x ${gridCount}</b> (Grid size cannot be more then 64)`;
     }
+
+    existingGridSize.value = gridCount;
 
 
 
@@ -79,7 +82,7 @@ function populateGrid(gridCount=10){
 
 function clearGrid() {
     sketchPad.innerHTML = "";
-    populateGrid();
+    populateGrid(parseInt(existingGridSize.value));
 }
 
 function RGBToHex(rgb) {
@@ -128,7 +131,10 @@ function paintGrid(grid){
 clearGridButton.addEventListener('click', clearGrid);
 
 changeSizeButton.addEventListener('click', () => {
-    populateGrid(prompt('Enter grid count per side: '))
+    let userChoice = prompt('Enter grid count per side: ');
+    if (userChoice){
+        populateGrid()
+    }
 })
 
 populateGrid();
